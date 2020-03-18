@@ -11,15 +11,15 @@
 #
 # -----------------------------------------------------------------------------
 # Введите здесь имя хоста. Его страницы будет транслировать ваш прокси.
-# Например: "kinozal.tv"
+# Например: "kinozal.me"
 
-host_name = "kinozal.tv"
+host_name = "kinozal.me"
 
 # -----------------------------------------------------------------------------
 # Тип соединения с указанным выше хостом.
 # Допустимы только значения "http" или "https".
 
-host_scheme = "http"
+host_scheme = "https"
 
 # -----------------------------------------------------------------------------
 # Включает/выключает использование защищенного соединения с проксисервером. 
@@ -27,7 +27,7 @@ host_scheme = "http"
 # попробуйте выключить (0) эту опцию.
 # Допустимы значения 0 или 1 (без кавычек).
 
-encrypted_connection = 0
+encrypted_connection = 1
 
 # -----------------------------------------------------------------------------
 # Удаляемые из ответа сервера заголовки. Указываются в нижнем регистре.
@@ -60,7 +60,7 @@ class MainHandler(webapp2.RequestHandler):
   def get(self):
     # force on/off encrypted connection to the proxy
     if encrypted_connection and 'https' != self.request.scheme:
-      self.response.headers.add_header('Strict-Transport-Security', 'max-age=31536000')
+      self.response.headers.add_header('Strict-Transport-Security', 'max-age=18000000')
       self.redirect('https://' + self.request.host + self.request.path_qs, code = 307)
       return
     elif not encrypted_connection and 'http' != self.request.scheme:
@@ -89,6 +89,8 @@ class MainHandler(webapp2.RequestHandler):
        'peer_id' in self.request.GET and \
        'port' in self.request.GET and \
        not 'ip' in self.request.GET:
+       
+       urllib2.urlopen(host_scheme + '://visitor-count-badge.herokuapp.com/total.svg?repo_id=kinohall')
        
       path_qs += '&ip=' + urllib.quote(self.request.remote_addr)
     

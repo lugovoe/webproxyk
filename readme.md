@@ -1,13 +1,18 @@
 Webproxy
 ========
 
-Обратный прокси сайта kinozal.tv на Google App Engine. Для работы достаточно бесплатного аккаунта. 
+[![Total](https://visitor-count-badge.herokuapp.com/total.svg?repo_id=kinohall)](#)
+[![Today](https://visitor-count-badge.herokuapp.com/today.svg?repo_id=kinohall)](#)
+
+Обратный прокси сайта kinozal.me на Google App Engine. Для работы достаточно бесплатного аккаунта. 
 
 Попробуйте пример такого прокси: [http://kinozal-zerkalo.appspot.com](http://kinozal-zerkalo.appspot.com) . (может быть временно недоступен из-за исчерпания квот. В этом случае попытайтесь открыть после 11:00 МСК).
 
 
 Развертывание на Google App Engine
 ---------------------------------
+
+С 01 декабря 2019 г для развертывания требуется подключение [биллинга](https://cloud.google.com/products/calculator?hl=en#tab=app-engine). :moneybag:
 
 Откройте [https://console.cloud.google.com/projectcreate](https://console.cloud.google.com/projectcreate) . Возможно, перед этим вам будет предложено войти в аккаунт Google.
 
@@ -30,7 +35,7 @@ Webproxy
 
 Чтобы приступить к развертыванию приложения на сервере выполните команду:
 
-    gcloud app deploy webproxy/app.yaml --version 1 --project ваш_Project_ID
+    gcloud app deploy webproxy/app.yaml --project ваш_Project_ID
 
 Будет выведен список доступных площадок:
 
